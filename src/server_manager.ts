@@ -1,6 +1,5 @@
 import Express, { json } from "express";
 import { createServer, Server } from "http";
-import { hostname, platform, type } from 'os';
 import swaggerUi from "swagger-ui-express";
 import { DefaultErrorHandler } from "./middleware/error-handler.middleware";
 import { RegisterRoutes } from './routes/routes';
@@ -38,15 +37,6 @@ export const StartServer = async () => {
   app.use(DefaultErrorHandler);
 
   // Demo endpoint pour retourner des infos du serveur
-  app.get('/info', (req, res) => {
-    res.json({
-      title: "Security Code Samples API",
-      host: hostname(),
-      platform: platform(),
-      type: type()
-    });
-  });
-
   app.get('/info', (req, res) => {
     res.json({
       title: "Security Code Samples API",
