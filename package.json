@@ -7,7 +7,7 @@
     "server": "nodemon",
     "clean": "rimraf build",
     "build": "npm run clean && npm run swagger && tsc && copyfiles public/**/* build/",
-    "start-api": "node ./server.js",
+    "start-api": "node build/server.js",
     "swagger": "tsoa spec-and-routes",
     "unit": "nyc --report-dir ./coverage/unit mocha -r ts-node/register -r source-map-support/register --recursive \"test/unit/suites/**/*.test.ts\"",
     "integration": "env-cmd -f ./test/.env.test npm run integration-no-env",
