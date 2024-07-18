@@ -34,7 +34,6 @@ export const StartServer = async () => {
     })
   );
 
-
   // Ajouter un handler pour les erreurs
   app.use(DefaultErrorHandler);
 
@@ -46,7 +45,14 @@ export const StartServer = async () => {
       platform: platform(),
       type: type()
     });
-  })
+  });
+
+  app.get('/info', (req, res) => {
+    res.json({
+      title: "Security Code Samples API",
+      familyName: "SONNA",
+    });
+  });
 
   // Lancer le serveur
   return new Promise<Server>(
@@ -55,26 +61,24 @@ export const StartServer = async () => {
       server.listen(PORT, () => {
         Log(`API Listening on port ${PORT}`)
         resolve(server);
-      })     
+      })
     }
-  );  
-
-
+  );
 }
 
-export const StopServer = async (server: Server|undefined) => {
+export const StopServer = async (server: Server | undefined) => {
   if (!server) { return; }
   return new Promise<void>(
     (resolve, reject) => {
       server.close(
         (err) => {
           if (err) {
-            reject(err);            
+            reject(err);
           } else {
             resolve();
           }
         }
       )
     }
-  );  
+  );
 }
