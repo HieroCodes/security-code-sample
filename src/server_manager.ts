@@ -9,12 +9,13 @@ import mysql from 'mysql2';
 
 // Créer la connexion à la base de données
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
+  host: process.env.DB_HOST || 'mon_sgbdr',
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   port: parseInt(process.env.DB_PORT || '3306', 10)  // Convertir en nombre
 });
+
 
 db.connect((err) => {
   if (err) {
